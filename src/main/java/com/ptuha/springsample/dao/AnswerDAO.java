@@ -5,8 +5,8 @@ import com.ptuha.springsample.model.Answer;
 import java.util.List;
 
 public interface AnswerDAO {
-    Answer getAnswer(long answerId);
-    List<Answer> getAllAnswers(long questionId);
+    Answer getAnswer(int answerId);
+    List<Answer> getAllAnswers(int questionId);
     void saveAnswer(Answer answerForSaving);
-    void deleteAnswer(long answerForRemovingId);
+    void deleteAnswer(int answerForRemovingId);
 }

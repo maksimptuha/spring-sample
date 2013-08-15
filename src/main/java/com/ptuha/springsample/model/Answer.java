@@ -3,7 +3,13 @@ package com.ptuha.springsample.model;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+//import org.hibernate.validator.constraints.NotEmpty;
 
+@NamedQueries({
+        @NamedQuery(name = "Answer.get", query = "from Answers where id = :id"),
+        @NamedQuery(name = "Answer.getAll", query = "from Answers where question_id = :id"),
+        @NamedQuery(name = "Answer.delete", query = "delete from Answers where id = :id")
+})
 @Entity
 @Table(name = "Answers")
 public class Answer implements Serializable {
@@ -24,6 +30,7 @@ public class Answer implements Serializable {
         this.id = id;
     }
 
+    //@NotEmpty
     @Column(name = "text")
     public String getText() {
         return text;
@@ -33,8 +40,9 @@ public class Answer implements Serializable {
         this.text = text;
     }
 
+    //@NotEmpty
+    //@Temporal(TemporalType.DATE)
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
     public Date getPostingDate() {
         return postingDate;
     }
@@ -43,6 +51,7 @@ public class Answer implements Serializable {
         this.postingDate = postingDate;
     }
 
+    //@NotEmpty
     @Column(name = "likes")
     public int getLikes() {
         return likes;

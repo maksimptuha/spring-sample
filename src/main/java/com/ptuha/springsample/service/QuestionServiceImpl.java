@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -14,8 +15,8 @@ public class QuestionServiceImpl implements QuestionService {
     @Autowired
     private QuestionDAO questionDAO;
 
-    public Question getQuestion(String questionTitle) {
-        return questionDAO.getQuestion(questionTitle);
+    public Question getQuestion(int questionId) {
+        return questionDAO.getQuestion(questionId);
     }
 
     public List<Question> getAllQuestions() {
@@ -24,11 +25,14 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Transactional
     public void saveQuestion(Question questionForSaving) {
+        if(questionForSaving.getPostingDate() == null) {
+            questionForSaving.setPostingDate(new Date());
+        }
         questionDAO.saveQuestion(questionForSaving);
     }
 
     @Transactional
-    public void deleteQuestion(long questionForRemovingId) {
+    public void deleteQuestion(int questionForRemovingId) {
         questionDAO.deleteQuestion(questionForRemovingId);
     }
 }

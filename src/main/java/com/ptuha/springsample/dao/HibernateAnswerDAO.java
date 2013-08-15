@@ -13,16 +13,16 @@ public class HibernateAnswerDAO implements AnswerDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Answer getAnswer(long answerId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Answers where id = :id");
-        query.setLong("id", answerId);
+    public Answer getAnswer(int answerId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("Answer.get");
+        query.setInteger("id", answerId);
         return (Answer) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
-    public List<Answer> getAllAnswers(long questionId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("from Answers where question_id = :id");
-        query.setLong("id", questionId);
+    public List<Answer> getAllAnswers(int questionId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("Answer.getAll");
+        query.setInteger("id", questionId);
         return query.list();
     }
 
@@ -30,9 +30,9 @@ public class HibernateAnswerDAO implements AnswerDAO {
         sessionFactory.getCurrentSession().save(answerForSaving);
     }
 
-    public void deleteAnswer(long answerForRemovingId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("delete from Answers where id = :id");
-        query.setLong("id", answerForRemovingId);
+    public void deleteAnswer(int answerForRemovingId) {
+        Query query = sessionFactory.getCurrentSession().createQuery("Answer.delete");
+        query.setInteger("id", answerForRemovingId);
         query.executeUpdate();
     }
 }

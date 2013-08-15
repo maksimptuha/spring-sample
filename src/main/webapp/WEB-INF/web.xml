@@ -8,15 +8,6 @@
         http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>Spring Sample</display-name>
 
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>/WEB-INF/config/*.xml</param-value>
-    </context-param>
-
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
     <servlet>
         <servlet-name>dispatcher-servlet</servlet-name>
         <servlet-class>
@@ -30,6 +21,6 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher-servlet</servlet-name>
-        <url-pattern>/*.html</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>

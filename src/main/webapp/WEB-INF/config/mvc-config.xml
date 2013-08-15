@@ -21,4 +21,6 @@
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+    
+    <import resource="persistence-config.xml"/>
 </beans>

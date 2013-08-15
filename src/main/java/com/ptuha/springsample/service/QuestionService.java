@@ -5,8 +5,8 @@ import com.ptuha.springsample.model.Question;
 import java.util.List;
 
 public interface QuestionService {
-    Question getQuestion(String questionTitle);
+    Question getQuestion(int questionId);
     List<Question> getAllQuestions();
     void saveQuestion(Question questionForSaving);
-    void deleteQuestion(long questionForRemovingId);
+    void deleteQuestion(int questionForRemovingId);
 }

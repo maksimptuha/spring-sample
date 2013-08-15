@@ -4,11 +4,19 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+//import org.hibernate.validator.constraints.NotEmpty;
+//import org.hibernate.validator.constraints.Length;
 
+@NamedQueries({
+        @NamedQuery(name = "Question.get", query = "from Questions where id = :id"),
+        @NamedQuery(name = "Question.getAll", query = "from Questions"),
+        @NamedQuery(name = "Question.delete", query = "delete from Questions where id = :id")
+})
 @Entity
 @Table(name = "Questions")
 public class Question implements Serializable {
     private int id;
+    private String title;
     private String text;
     private Date postingDate;
     private int likes;
@@ -25,6 +33,18 @@ public class Question implements Serializable {
         this.id = id;
     }
 
+    //@NotEmpty
+    //@Length(max = 100)
+    @Column(name = "title")
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    //@NotEmpty
     @Column(name = "text")
     public String getText() {
         return text;
@@ -34,8 +54,9 @@ public class Question implements Serializable {
         this.text = text;
     }
 
-    @Column(name = "date")
+    //@NotEmpty
     @Temporal(TemporalType.DATE)
+    @Column(name = "date")
     public Date getPostingDate() {
         return postingDate;
     }
@@ -44,6 +65,7 @@ public class Question implements Serializable {
         this.postingDate = postingDate;
     }
 
+    //@NotEmpty
     @Column(name = "likes")
     public int getLikes() {
         return likes;
