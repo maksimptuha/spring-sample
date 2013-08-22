@@ -9,4 +9,6 @@ public interface QuestionService {
     List<Question> getAllQuestions();
     void saveQuestion(Question questionForSaving);
     void deleteQuestion(int questionForRemovingId);
+    String likeQuestion(int questionId);
+    String dislikeQuestion(int questionId);
 }

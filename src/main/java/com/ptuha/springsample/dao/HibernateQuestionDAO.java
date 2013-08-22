@@ -14,23 +14,24 @@ public class HibernateQuestionDAO implements QuestionDAO {
     private SessionFactory sessionFactory;
 
     public Question getQuestion(int questionId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Question.get");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Question where id = :id");
         query.setInteger("id", questionId);
         return (Question) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
     public List<Question> getAllQuestions() {
-        Query query = sessionFactory.getCurrentSession().createQuery("Question.getAll");
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "from Question question order by question.postingDate desc");
         return query.list();
     }
 
     public void saveQuestion(Question questionForSaving) {
-        sessionFactory.getCurrentSession().save(questionForSaving);
+        sessionFactory.getCurrentSession().saveOrUpdate(questionForSaving);
     }
 
     public void deleteQuestion(int questionForRemovingId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Question.delete");
+        Query query = sessionFactory.getCurrentSession().createQuery("delete from Question where id = :id");
         query.setInteger("id", questionForRemovingId);
         query.executeUpdate();
     }

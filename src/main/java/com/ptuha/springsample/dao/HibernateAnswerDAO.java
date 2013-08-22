@@ -14,14 +14,14 @@ public class HibernateAnswerDAO implements AnswerDAO {
     private SessionFactory sessionFactory;
 
     public Answer getAnswer(int answerId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Answer.get");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Answer where id = :id");
         query.setInteger("id", answerId);
         return (Answer) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
     public List<Answer> getAllAnswers(int questionId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Answer.getAll");
+        Query query = sessionFactory.getCurrentSession().createQuery("from Answer where question_id = :id");
         query.setInteger("id", questionId);
         return query.list();
     }
@@ -31,7 +31,7 @@ public class HibernateAnswerDAO implements AnswerDAO {
     }
 
     public void deleteAnswer(int answerForRemovingId) {
-        Query query = sessionFactory.getCurrentSession().createQuery("Answer.delete");
+        Query query = sessionFactory.getCurrentSession().createQuery("delete from Answer where id = :id");
         query.setInteger("id", answerForRemovingId);
         query.executeUpdate();
     }

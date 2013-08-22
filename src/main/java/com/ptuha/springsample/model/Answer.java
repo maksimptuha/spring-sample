@@ -5,11 +5,6 @@ import java.io.Serializable;
 import java.util.Date;
 //import org.hibernate.validator.constraints.NotEmpty;
 
-@NamedQueries({
-        @NamedQuery(name = "Answer.get", query = "from Answers where id = :id"),
-        @NamedQuery(name = "Answer.getAll", query = "from Answers where question_id = :id"),
-        @NamedQuery(name = "Answer.delete", query = "delete from Answers where id = :id")
-})
 @Entity
 @Table(name = "Answers")
 public class Answer implements Serializable {
@@ -41,7 +36,7 @@ public class Answer implements Serializable {
     }
 
     //@NotEmpty
-    //@Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     public Date getPostingDate() {
         return postingDate;
@@ -61,7 +56,7 @@ public class Answer implements Serializable {
         this.likes = likes;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "question_id")
     public Question getQuestion() {
         return question;

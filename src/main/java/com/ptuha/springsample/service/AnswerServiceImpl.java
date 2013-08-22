@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Date;
 import java.util.List;
 
-@Service
+@Service("answerService")
 @Transactional(readOnly = true)
 public class AnswerServiceImpl implements AnswerService {
     @Autowired
@@ -34,5 +34,21 @@ public class AnswerServiceImpl implements AnswerService {
     @Transactional
     public void deleteAnswer(int answerForRemovingId) {
         answerDAO.deleteAnswer(answerForRemovingId);
+    }
+
+    @Transactional
+    public String likeAnswer(int answerId) {
+        Answer answer = this.getAnswer(answerId);
+        answer.setLikes(answer.getLikes() + 1);
+        this.saveAnswer(answer);
+        return String.valueOf(answer.getLikes());
+    }
+
+    @Transactional
+    public String dislikeAnswer(int answerId) {
+        Answer answer = this.getAnswer(answerId);
+        answer.setLikes(answer.getLikes() - 1);
+        this.saveAnswer(answer);
+        return String.valueOf(answer.getLikes());
     }
 }

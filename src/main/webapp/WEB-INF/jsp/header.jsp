@@ -9,12 +9,14 @@
 <html>
 <head>
     <title>Spring Sample</title>
+    <link href="<spring:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet"/>
+    <link href="<spring:url value="/resources/css/bootstrap-responsive.min.css"/>" rel="stylesheet"/>
 </head>
 <body>
     <div>
         <ul>
             <li>
-                <a href="<spring:url value="/" htmlEscape="true"/>">Questions</a>
+                <a href="<spring:url value="/home"/>">Questions</a>
             </li>
         </ul>
         <div>

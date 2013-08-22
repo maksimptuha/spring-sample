@@ -9,4 +9,6 @@ public interface AnswerService {
     List<Answer> getAllAnswers(int questionId);
     void saveAnswer(Answer answerForSaving);
     void deleteAnswer(int answerForRemovingId);
+    String likeAnswer(int answerId);
+    String dislikeAnswer(int answerId);
 }

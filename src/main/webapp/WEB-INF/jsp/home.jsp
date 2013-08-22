@@ -1,22 +1,25 @@
 <%@ include file="header.jsp" %>
 
-<div>
-    <c:forEach var="question" items="questions">
+<c:forEach var="question" items="${questions}">
+    <div>
         <div>
+            <div>${fn:length(question.answers)}</div>
+            <div>answers</div>
+        </div>
+        <div>
+            <h3>
+                <a href="<spring:url value="/questions/get/${question.id}"/>">
+                    ${question.title}
+                </a>
+            </h3>
             <div>
-                <div>${fn:length(question.answers)}</div>
-                <div>answers</div>
+                <a class="btn btn-large" href="<spring:url value="/questions/delete/${question.id}"/>">Delete Question</a>
             </div>
             <div>
-                <h3>
-                    <a href="<spring:url value="/questions/get/${question.id}" htmlEscape="true"/>">${question.title}</a>
-                </h3>
-                <div>
-                    <span><fmt:formatDate value="${question.postingDate}" pattern="yyyy-MM-dd"/></span>
-                </div>
+                <span><fmt:formatDate value="${question.postingDate}" type="both"/></span>
             </div>
         </div>
-    </c:forEach>
-</div>
+    </div>
+</c:forEach>
 
 <%@ include file="footer.jsp" %>

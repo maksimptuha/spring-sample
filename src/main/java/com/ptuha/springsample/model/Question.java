@@ -7,11 +7,6 @@ import java.util.List;
 //import org.hibernate.validator.constraints.NotEmpty;
 //import org.hibernate.validator.constraints.Length;
 
-@NamedQueries({
-        @NamedQuery(name = "Question.get", query = "from Questions where id = :id"),
-        @NamedQuery(name = "Question.getAll", query = "from Questions"),
-        @NamedQuery(name = "Question.delete", query = "delete from Questions where id = :id")
-})
 @Entity
 @Table(name = "Questions")
 public class Question implements Serializable {
@@ -55,7 +50,7 @@ public class Question implements Serializable {
     }
 
     //@NotEmpty
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     public Date getPostingDate() {
         return postingDate;
@@ -75,7 +70,8 @@ public class Question implements Serializable {
         this.likes = likes;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "question")
+    @OrderBy("likes desc")
     public List<Answer> getAnswers() {
         return answers;
     }
