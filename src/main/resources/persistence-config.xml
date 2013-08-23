@@ -24,8 +24,8 @@
         </property>
         <property name="annotatedClasses">
             <list>
-                <value>com.ptuha.springsample.model.Question</value>
-                <value>com.ptuha.springsample.model.Answer</value>
+                <value>com.ptuha.springsample.domain.Question</value>
+                <value>com.ptuha.springsample.domain.Answer</value>
             </list>
         </property>
     </bean>

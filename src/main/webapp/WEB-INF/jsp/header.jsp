@@ -14,13 +14,19 @@
 </head>
 <body>
     <div>
+        <p>
+            <a href="?lang=en">English</a>
+            | <a href="?lang=ru">Русский</a>
+        </p>
+    </div>
+    <div>
         <ul>
             <li>
-                <a href="<spring:url value="/home"/>">Questions</a>
+                <a href="<spring:url value="/home"/>"><spring:message code="questions"/></a>
             </li>
         </ul>
         <div>
-            <a href="<spring:url value="/questions/ask"/>">Ask Question</a>
+            <a href="<spring:url value="/questions/ask"/>"><spring:message code="askQuestion"/></a>
         </div>
     </div>
 

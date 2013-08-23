@@ -1,6 +1,6 @@
 package com.ptuha.springsample.dao;
 
-import com.ptuha.springsample.model.Answer;
+import com.ptuha.springsample.domain.Answer;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

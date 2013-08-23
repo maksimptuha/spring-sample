@@ -1,11 +1,21 @@
-package com.ptuha.springsample.model;
+package com.ptuha.springsample.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.CascadeType;
+import javax.persistence.TemporalType;
+import javax.persistence.FetchType;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-//import org.hibernate.validator.constraints.NotEmpty;
-//import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "Questions")
@@ -28,8 +38,8 @@ public class Question implements Serializable {
         this.id = id;
     }
 
-    //@NotEmpty
-    //@Length(max = 100)
+    @NotEmpty
+    @Length(max = 100)
     @Column(name = "title")
     public String getTitle() {
         return title;
@@ -39,7 +49,7 @@ public class Question implements Serializable {
         this.title = title;
     }
 
-    //@NotEmpty
+    @NotEmpty
     @Column(name = "text")
     public String getText() {
         return text;
@@ -49,7 +59,6 @@ public class Question implements Serializable {
         this.text = text;
     }
 
-    //@NotEmpty
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     public Date getPostingDate() {
@@ -60,7 +69,6 @@ public class Question implements Serializable {
         this.postingDate = postingDate;
     }
 
-    //@NotEmpty
     @Column(name = "likes")
     public int getLikes() {
         return likes;
@@ -70,7 +78,7 @@ public class Question implements Serializable {
         this.likes = likes;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "question")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "question")
     @OrderBy("likes desc")
     public List<Answer> getAnswers() {
         return answers;

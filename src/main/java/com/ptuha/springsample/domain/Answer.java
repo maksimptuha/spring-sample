@@ -1,9 +1,18 @@
-package com.ptuha.springsample.model;
+package com.ptuha.springsample.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.TemporalType;
+import javax.persistence.FetchType;
 import java.io.Serializable;
 import java.util.Date;
-//import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "Answers")
@@ -25,7 +34,7 @@ public class Answer implements Serializable {
         this.id = id;
     }
 
-    //@NotEmpty
+    @NotEmpty
     @Column(name = "text")
     public String getText() {
         return text;
@@ -35,7 +44,6 @@ public class Answer implements Serializable {
         this.text = text;
     }
 
-    //@NotEmpty
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date")
     public Date getPostingDate() {
@@ -46,7 +54,6 @@ public class Answer implements Serializable {
         this.postingDate = postingDate;
     }
 
-    //@NotEmpty
     @Column(name = "likes")
     public int getLikes() {
         return likes;
@@ -56,7 +63,7 @@ public class Answer implements Serializable {
         this.likes = likes;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
     public Question getQuestion() {
         return question;

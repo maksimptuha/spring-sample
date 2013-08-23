@@ -1,6 +1,6 @@
 package com.ptuha.springsample.service;
 
-import com.ptuha.springsample.model.Answer;
+import com.ptuha.springsample.domain.Answer;
 
 import java.util.List;
 

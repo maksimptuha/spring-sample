@@ -1,15 +1,19 @@
 package com.ptuha.springsample.controller;
 
-import com.ptuha.springsample.model.Answer;
-import com.ptuha.springsample.model.Question;
+import com.ptuha.springsample.domain.Answer;
+import com.ptuha.springsample.domain.Question;
 import com.ptuha.springsample.service.AnswerService;
 import com.ptuha.springsample.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
+@SessionAttributes({"question", "answer"})
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
@@ -38,15 +42,19 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/questions/add", method = RequestMethod.POST)
-    public String addQuestion(@ModelAttribute("question") Question question) {
+    public String addQuestion(@ModelAttribute("question") @Valid Question question, BindingResult result) {
+        if(result.hasErrors()) {
+            return "questionAdd";
+        }
+
         questionService.saveQuestion(question);
         return "redirect:/home";
     }
 
     @RequestMapping(value = "/questions/delete/{questionId}", method = RequestMethod.GET)
-    public String deleteQuestion(@PathVariable("questionId") int questionId) {
+    public @ResponseBody String deleteQuestion(@PathVariable("questionId") int questionId) {
         questionService.deleteQuestion(questionId);
-        return "redirect:/home";
+        return String.valueOf(questionId);
     }
 
     @RequestMapping(value = "/questions/like", method = RequestMethod.GET)

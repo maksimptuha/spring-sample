@@ -1,7 +1,7 @@
 package com.ptuha.springsample.service;
 
 import com.ptuha.springsample.dao.QuestionDAO;
-import com.ptuha.springsample.model.Question;
+import com.ptuha.springsample.domain.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,6 +1,6 @@
 package com.ptuha.springsample.dao;
 
-import com.ptuha.springsample.model.Question;
+import com.ptuha.springsample.domain.Question;
 
 import java.util.List;
 

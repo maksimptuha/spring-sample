@@ -1,12 +1,21 @@
 package com.ptuha.springsample.controller;
 
-import com.ptuha.springsample.model.Answer;
-import com.ptuha.springsample.model.Question;
+import com.ptuha.springsample.domain.Answer;
+import com.ptuha.springsample.domain.Question;
 import com.ptuha.springsample.service.AnswerService;
 import com.ptuha.springsample.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.support.SessionStatus;
+
+import javax.validation.Valid;
 
 @Controller
 public class AnswerController {
@@ -16,18 +25,24 @@ public class AnswerController {
     private AnswerService answerService;
 
     @RequestMapping(value = "/answers/add", method = RequestMethod.POST)
-    public String addAnswer(@ModelAttribute("answer") Answer answer, @RequestParam("questionId") int questionId) {
+    public String addAnswer(@ModelAttribute("answer") @Valid Answer answer, BindingResult result,
+                            @RequestParam("questionId") int questionId, SessionStatus status) {
+        if(result.hasErrors()) {
+            return "questionGet";
+        }
+
         Question question = questionService.getQuestion(questionId);
         question.getAnswers().add(answer);
         answer.setQuestion(question);
         answerService.saveAnswer(answer);
+        status.setComplete();
         return "redirect:/questions/get/" + answer.getQuestion().getId();
     }
 
-    @RequestMapping(value = "/answers/delete/{questionId}/{answerId}", method = RequestMethod.GET)
-    public String deleteAnswer(@PathVariable("questionId") int questionId, @PathVariable("answerId") int answerId) {
+    @RequestMapping(value = "/answers/delete/{answerId}", method = RequestMethod.GET)
+    public @ResponseBody String deleteAnswer(@PathVariable("answerId") int answerId) {
         answerService.deleteAnswer(answerId);
-        return "redirect:/questions/get/" + questionId;
+        return String.valueOf(answerId);
     }
 
     @RequestMapping(value = "/answers/like", method = RequestMethod.GET)
