@@ -27,7 +27,9 @@ public class HibernateQuestionDAO implements QuestionDAO {
     }
 
     public void saveQuestion(Question questionForSaving) {
+        System.out.println(questionForSaving.getLikes());
         sessionFactory.getCurrentSession().saveOrUpdate(questionForSaving);
+        sessionFactory.getCurrentSession().flush();
     }
 
     public void deleteQuestion(int questionForRemovingId) {

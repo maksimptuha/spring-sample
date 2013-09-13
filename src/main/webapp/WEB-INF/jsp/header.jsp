@@ -11,23 +11,28 @@
     <title>Spring Sample</title>
     <link href="<spring:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet"/>
     <link href="<spring:url value="/resources/css/bootstrap-responsive.min.css"/>" rel="stylesheet"/>
+    <link href="<spring:url value="/resources/css/style.css"/>" rel="stylesheet"/>
 </head>
 <body>
-    <div>
-        <p>
-            <a href="?lang=en">English</a>
-            | <a href="?lang=ru">Русский</a>
-        </p>
-    </div>
-    <div>
-        <ul>
-            <li>
-                <a href="<spring:url value="/home"/>"><spring:message code="questions"/></a>
-            </li>
-        </ul>
-        <div>
-            <a href="<spring:url value="/questions/ask"/>"><spring:message code="askQuestion"/></a>
+    <div id="main" class="span10">
+        <div class="lang-menu">
+            <p>
+                <a href="?lang=en">English</a>
+                | <a href="?lang=ru">Русский</a>
+            </p>
         </div>
-    </div>
+        <div class="navbar">
+            <div class="menu navbar-inner span10">
+                <a class="brand">Spring Sample</a>
+                <ul class="unstyled nav">
+                    <li>
+                        <a href="<spring:url value="/home"/>"><spring:message code="questions"/></a>
+                    </li>
+                    <li>
+                        <a href="<spring:url value="/questions/ask"/>"><spring:message code="askQuestion"/></a>
+                    </li>
+                </ul>
+             </div>
+        </div>
 
-    <div id="main">
+        <div class="container span10">

@@ -3,7 +3,7 @@ var homeAjax = (function(homeAjax) {
         $.getJSON(url, function(questionId) {
             $('div.question-' + questionId).remove();
         });
-    }
+    };
 
     return homeAjax;
 })(homeAjax || {});

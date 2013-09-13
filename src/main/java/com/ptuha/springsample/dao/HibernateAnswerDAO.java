@@ -27,7 +27,8 @@ public class HibernateAnswerDAO implements AnswerDAO {
     }
 
     public void saveAnswer(Answer answerForSaving) {
-        sessionFactory.getCurrentSession().save(answerForSaving);
+        sessionFactory.getCurrentSession().saveOrUpdate(answerForSaving);
+        sessionFactory.getCurrentSession().flush();
     }
 
     public void deleteAnswer(int answerForRemovingId) {
