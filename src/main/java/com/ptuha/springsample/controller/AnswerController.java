@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Iterator;
 
 @Controller
 public class AnswerController {
@@ -24,7 +26,7 @@ public class AnswerController {
     @Autowired
     private AnswerService answerService;
 
-    @RequestMapping(value = "/answers/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/answers/add", method = {RequestMethod.GET, RequestMethod.POST})
     public String addAnswer(@ModelAttribute("answer") @Valid Answer answer, BindingResult result,
                             @RequestParam("questionId") int questionId, SessionStatus status) {
         if(result.hasErrors()) {
@@ -40,7 +42,16 @@ public class AnswerController {
     }
 
     @RequestMapping(value = "/answers/delete/{answerId}", method = RequestMethod.GET)
-    public @ResponseBody String deleteAnswer(@PathVariable("answerId") int answerId) {
+    public @ResponseBody String deleteAnswer(@PathVariable("answerId") int answerId, HttpSession session) {
+        Question question = (Question) session.getAttribute("question");
+        Iterator<Answer> iterator = question.getAnswers().iterator();
+        while (iterator.hasNext()) {
+            Answer answer = iterator.next();
+            if(answer.getId() == answerId) {
+                iterator.remove();
+            }
+        }
+
         answerService.deleteAnswer(answerId);
         return String.valueOf(answerId);
     }

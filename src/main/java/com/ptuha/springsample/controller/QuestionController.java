@@ -10,10 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"question", "answer"})
 public class QuestionController {
     @Autowired
     private QuestionService questionService;
@@ -33,15 +33,17 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/questions/get/{questionId}", method = RequestMethod.GET)
-    public String getQuestion(@PathVariable("questionId") int questionId, Model model) {
+    public String getQuestion(@PathVariable("questionId") int questionId, Model model, HttpSession session) {
         Question question = questionService.getQuestion(questionId);
         Answer answer = new Answer();
         model.addAttribute("question", question);
         model.addAttribute("answer", answer);
+        session.setAttribute("question", question);
+        session.setAttribute("answer", answer);
         return "questionGet";
     }
 
-    @RequestMapping(value = "/questions/add", method = RequestMethod.POST)
+    @RequestMapping(value = "/questions/add", method = {RequestMethod.GET, RequestMethod.POST})
     public String addQuestion(@ModelAttribute("question") @Valid Question question, BindingResult result) {
         if(result.hasErrors()) {
             return "questionAdd";

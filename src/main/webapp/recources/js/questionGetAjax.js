@@ -1,29 +1,20 @@
 var questionGetAjax = (function(questionGetAjax) {
-//    (function init() {
-//        $('#answerForm form').submit(function(event) {
-//            event.preventDefault();
-//            $.ajax({
-//                url: $(this).attr('action'),
-//                type: 'post',
-//                data: $(this).serialize(),
-//                success: function() {
-//
-//                }
-//            });
-//        });
-//    })()
+//    questionGetAjax.addAnswer = function() {
+//        var $answerForm = $('div#answer-form form');
+//        $answerForm.
+//    }
 
     questionGetAjax.deleteAnswer = function(url) {
         $.getJSON(url, function(answerId) {
             $('div.answer-' + answerId).remove();
         });
 
-        var answerCounter = $('div.answers-block-counter h4'),
-            answerCounterData = answerCounter.text().split(' '),
+        var $answerCounter = $('div.answers-block-counter h4'),
+            answerCounterData = $answerCounter.text().split(' '),
             newAnswerAmount = answerCounterData[0] - 1,
             answersCounterMessage = answerCounterData[1];
 
-        answerCounter.text(newAnswerAmount + ' ' + answersCounterMessage);
+        $answerCounter.text(newAnswerAmount + ' ' + answersCounterMessage);
     };
 
     questionGetAjax.questionLike = function() {
