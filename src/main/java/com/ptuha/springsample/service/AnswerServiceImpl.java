@@ -2,13 +2,13 @@ package com.ptuha.springsample.service;
 
 import com.ptuha.springsample.dao.AnswerDAO;
 import com.ptuha.springsample.domain.Answer;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,7 +38,7 @@ public class AnswerServiceImpl implements AnswerService {
         answerForSaving.setText(answerForSaving.getText().replace("\n", "<br/>"));
 
         if (answerForSaving.getPostingDate() == null) {
-            answerForSaving.setPostingDate(new Date());
+            answerForSaving.setPostingDate(new DateTime());
         }
         answerDAO.saveAnswer(answerForSaving);
     }

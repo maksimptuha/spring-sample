@@ -5,21 +5,21 @@ import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
-import javax.persistence.Temporal;
 import javax.persistence.ManyToOne;
 import javax.persistence.JoinColumn;
-import javax.persistence.TemporalType;
 import javax.persistence.FetchType;
 import java.io.Serializable;
-import java.util.Date;
+
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "Answers")
 public class Answer implements Serializable {
     private int id;
     private String text;
-    private Date postingDate;
+    private DateTime postingDate;
     private int likes;
     private Question question;
 
@@ -44,13 +44,13 @@ public class Answer implements Serializable {
         this.text = text;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @Type(type="org.joda.time.contrib.hibernate.PersistentDateTime")
     @Column(name = "date")
-    public Date getPostingDate() {
+    public DateTime getPostingDate() {
         return postingDate;
     }
 
-    public void setPostingDate(Date postingDate) {
+    public void setPostingDate(DateTime postingDate) {
         this.postingDate = postingDate;
     }
 

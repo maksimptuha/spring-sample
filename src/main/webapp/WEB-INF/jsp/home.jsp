@@ -18,7 +18,7 @@
                 </a>
             </div>
             <div class="question-date">
-                <span><fmt:formatDate value="${question.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+                <span><joda:format value="${question.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
             </div>
         </div>
     </div>

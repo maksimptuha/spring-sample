@@ -2,13 +2,13 @@ package com.ptuha.springsample.service;
 
 import com.ptuha.springsample.dao.QuestionDAO;
 import com.ptuha.springsample.domain.Question;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,7 +38,7 @@ public class QuestionServiceImpl implements QuestionService {
         questionForSaving.setText(questionForSaving.getText().replace("\n", "<br/>"));
 
         if(questionForSaving.getPostingDate() == null) {
-            questionForSaving.setPostingDate(new Date());
+            questionForSaving.setPostingDate(new DateTime());
         }
         questionDAO.saveQuestion(questionForSaving);
     }

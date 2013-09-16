@@ -15,7 +15,7 @@
         </div>
         <div class="question-block-date">
             <spring:message code="asked"/>
-            <span><fmt:formatDate value="${question.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+            <span><joda:format value="${question.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
         </div>
         <div class="answers-block-counter">
             <h4>${fn:length(question.answers)} <spring:message code="answersCapital"/></h4>
@@ -39,7 +39,7 @@
                 </div>
                 <div class="answer-date">
                     <spring:message code="answered"/>
-                    <span><fmt:formatDate value="${answer.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
+                    <span><joda:format value="${answer.postingDate}" pattern="yyyy-MM-dd HH:mm"/></span>
                 </div>
             </div>
         </c:forEach>

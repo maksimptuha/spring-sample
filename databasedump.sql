@@ -32,7 +32,7 @@ CREATE TABLE `answers` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_Answers_Questions_idx` (`question_id`),
   CONSTRAINT `fk_Answers_Questions` FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `answers` (
 
 LOCK TABLES `answers` WRITE;
 /*!40000 ALTER TABLE `answers` DISABLE KEYS */;
-INSERT INTO `answers` VALUES (1,'answer 1 texr','2013-08-25 17:08:28',2,1),(2,'abswer 1','2013-08-28 00:35:30',2,3),(3,'answer 2','2013-08-28 00:35:37',1,3);
+INSERT INTO `answers` VALUES (2,'answer2','2013-09-16 01:47:46',5,3),(3,'answer1','2013-09-16 01:48:00',2,3),(5,'answer1','2013-09-16 01:52:12',-1,5);
 /*!40000 ALTER TABLE `answers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +61,7 @@ CREATE TABLE `questions` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `title_index` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `questions` (
 
 LOCK TABLES `questions` WRITE;
 /*!40000 ALTER TABLE `questions` DISABLE KEYS */;
-INSERT INTO `questions` VALUES (1,'question 1 title','question 1 text','2013-08-25 17:08:12',4),(3,'question 2 title','question 2 text','2013-08-28 00:34:20',1);
+INSERT INTO `questions` VALUES (3,'question2 title','question2 text','2013-09-16 01:46:59',3),(5,'question1 title','question1 text','2013-09-16 01:51:59',2);
 /*!40000 ALTER TABLE `questions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -83,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-14 18:09:10
+-- Dump completed on 2013-09-16  2:02:50

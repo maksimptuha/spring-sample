@@ -40,13 +40,13 @@ var questionGetAjax = (function(questionGetAjax) {
 
     questionGetAjax.answerLike = function(answerId) {
         $.getJSON('/answers/like', {answerId : answerId}, function(likes) {
-            $('div.answer-likes span').text(likes);
+            $('div.answer-likes-' + answerId).find('span').text(likes);
         });
     };
 
     questionGetAjax.answerDislike = function(answerId) {
         $.getJSON('/answers/dislike', {answerId : answerId}, function(likes) {
-            $('div.answer-likes span').text(likes);
+            $('div.answer-likes-' + answerId).find('span').text(likes);
         });
     };
 
