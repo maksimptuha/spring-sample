@@ -1,19 +1,19 @@
 package com.ptuha.springsample.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.io.Serializable;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
 
+@NamedQueries(
+        {
+                @NamedQuery(name = "get answer", query = "from Answer where id = :id"),
+                @NamedQuery(name = "get all answers", query = "from Answer where question_id = :id"),
+                @NamedQuery(name = "delete answer", query = "delete from Answer where id = :id")
+        }
+)
 @Entity
 @Table(name = "Answers")
 public class Answer implements Serializable {

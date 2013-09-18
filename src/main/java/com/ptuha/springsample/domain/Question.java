@@ -1,14 +1,6 @@
 package com.ptuha.springsample.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -17,6 +9,13 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 import org.joda.time.DateTime;
 
+@NamedQueries(
+        {
+                @NamedQuery(name = "get question", query = "from Question where id = :id"),
+                @NamedQuery(name = "get all questions", query = "from Question question order by question.postingDate desc"),
+                @NamedQuery(name = "delete question", query = "delete from Question where id = :id")
+        }
+)
 @Entity
 @Table(name = "Questions")
 public class Question implements Serializable {

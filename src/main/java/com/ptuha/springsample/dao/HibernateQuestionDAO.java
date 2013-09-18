@@ -14,20 +14,19 @@ public class HibernateQuestionDAO implements QuestionDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    private Session getSession() {
+    protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
 
     public Question getQuestion(int questionId) {
-        Query query = getSession().createQuery("from Question where id = :id");
+        Query query = getSession().getNamedQuery("get question");
         query.setInteger("id", questionId);
         return (Question) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
     public List<Question> getAllQuestions() {
-        Query query = getSession().createQuery(
-                "from Question question order by question.postingDate desc");
+        Query query = getSession().getNamedQuery("get all questions");
         return query.list();
     }
 
@@ -37,7 +36,7 @@ public class HibernateQuestionDAO implements QuestionDAO {
     }
 
     public void deleteQuestion(int questionForRemovingId) {
-        Query query = getSession().createQuery("delete from Question where id = :id");
+        Query query = getSession().getNamedQuery("delete question");
         query.setInteger("id", questionForRemovingId);
         query.executeUpdate();
     }

@@ -53,7 +53,7 @@
                 <input type="hidden" id="questionId" name="questionId" value="${question.id}"/>
             </div>
             <div>
-                <input type="submit" value="Post Your Answer"/>
+                <input type="submit" class="btn btn-primary" value="<spring:message code="postYourQuestion"/>"/>
             </div>
         </form:form>
     </div>

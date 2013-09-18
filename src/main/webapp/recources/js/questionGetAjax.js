@@ -1,7 +1,10 @@
 var questionGetAjax = (function(questionGetAjax) {
 //    questionGetAjax.addAnswer = function() {
 //        var $answerForm = $('div#answer-form form');
-//        $answerForm.
+//        $answerForm.submit(function(e) {
+//            e.preventDefault();
+//            console.log($answerForm.serialize());
+//        });
 //    }
 
     questionGetAjax.deleteAnswer = function(url) {

@@ -17,7 +17,7 @@
             <form:errors path="text" cssClass="text-error"/>
         </div>
         <div>
-            <input type="submit" value="<spring:message code="postYourQuestion"/>"/>
+            <input type="submit" class="btn btn-primary" value="<spring:message code="postYourQuestion"/>"/>
         </div>
     </form:form>
 </div>
